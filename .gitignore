@@ -1,0 +1,17 @@
+*.class
+target/
+.git
+.svn
+.project
+*.iml
+.settings/
+.classpath
+*.log
+*.lck
+*.epoch
+LOG_HOME_IS_UNDEFINED
+.idea/
+*.zip
+*.jar
+*.rar
+.mvn

@@ -1,0 +1,53 @@
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameFirstLower = table.classNameFirstLower>   
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro mapperElJdbcType value jdbcType>${r"#{"}${value},jdbcType=${jdbcType}}</#macro>
+<#macro namespace>${basepackage}.${persistence}</#macro>
+
+<mapper namespace="${basepackage}.mapper.${className}Mapper">
+	<resultMap id="${className}EntityMap" type="${basepackage}.entity.${className}Entity">
+		<#list table.columns as column>
+		<result column="${column.sqlName}" property="${column.columnNameFirstLower}" jdbcType="${column.jdbcType}" />
+		</#list>
+	</resultMap>
+	<sql id="BaseColumn">
+		<#list table.columns as _column>
+		${_column.sqlName}<#if _column_has_next>,</#if>
+		</#list>
+	</sql>
+	
+
+	
+	 <!-- 插入 -->
+	<insert id="save" parameterType="${basepackage}.entity.${className}Entity" useGeneratedKeys="true"
+            keyProperty="id">
+		INSERT INTO ${table.sqlName} (
+		<#list table.columns as column>
+			${column.sqlName}<#if column_has_next>,</#if>
+		</#list>
+		) VALUES (
+		<#list table.columns as column>
+			<@mapperElJdbcType column.columnNameFirstLower column.jdbcType/><#if column_has_next>,</#if>
+		</#list>		
+		)
+	</insert>
+	
+	<!-- 查询 -->
+	<select id="query" parameterType="${basepackage}.entity.${className}Entity" resultMap="${className}EntityMap">
+		SELECT 
+			<include refid="BaseColumn" />
+		FROM ${table.sqlName}
+		<where>
+		<#list table.columns as column>
+			<if test="${column.columnNameFirstLower}!=null and ${column.columnNameFirstLower}!=''">
+				and ${column.sqlName} = <@mapperEl column.columnNameFirstLower/>
+			</if>
+		</#list>
+		</where>
+	</select>
+	
+</mapper>
