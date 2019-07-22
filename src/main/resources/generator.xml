@@ -40,14 +40,14 @@
 	<entry key="jdbc.password">dd2003</entry>-->
 	
     <!--oracle-->
-	<!--<entry key="jdbc.url">jdbc:oracle:thin:@10.138.60.104:1521:vcs</entry>-->
+	<!--<entry key="jdbc.url">jdbc:oracle:thin:@192.168.21.21:1521:vcs</entry>-->
 	<!--<entry key="jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>-->
 	<!--<entry key="jdbc.username">vcs</entry>-->
 	<!--<entry key="jdbc.password">vcsadmin</entry>-->
 
 
 	<!-- sqlserver -->
-	<entry key="jdbc.url">jdbc:sqlserver://10.101.100.32:1433;DatabaseName=hilink6</entry>
+	<entry key="jdbc.url">jdbc:sqlserver://192.168.21.21:1433;DatabaseName=hilink6</entry>
 	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
 	<entry key="jdbc.username">sa</entry>
 	<entry key="jdbc.password">Vcredit_db</entry>
