@@ -4,6 +4,7 @@
 	<groupId>code_generator</groupId>
 	<artifactId>code_generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties/>
 
 	<dependencies>
 		<dependency>
